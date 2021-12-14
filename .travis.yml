@@ -5,3 +5,12 @@ services:
   script:
     - docker build -t villevalas/node .
     - docker images villevalas/node
+
+  before_deploy:
+		- docker login -u <username> -p <password>
+
+  deploy: 
+    provider: script
+    script: docker push villevalas/node
+    on: 
+      branch: master
